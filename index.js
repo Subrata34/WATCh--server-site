@@ -49,8 +49,8 @@ async function run() {
     });
 
     app.get('/products',async(req,res)=>{
-      const coursor=watchCollection.find({});
-      const watch=await coursor.toArray();
+      const couser=watchCollection.find({});
+      const watch=await couser.toArray();
       res.send(watch);
     })
   } finally {
