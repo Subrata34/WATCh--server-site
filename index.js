@@ -30,9 +30,29 @@ async function run() {
     const watchCollection = database.collection('products');
 
     
-    app.get("/products", async (req, res) => {
-      console.log(req.body);
+    app.post("/products", async (req, res) => {
+      products=req.body.products;
+      price=req.body.price;
+      discrption=req.body.discrption;
+      pic=req.files.image;
+      picData=pic.data;
+      encoded=picData.toString('base64');
+      encodedpic=Buffer.from(encoded,'base64');
+      const user={
+        products,
+        discrption,
+        price,
+        image:encoded
+      }
+      const personal= await  watchCollection.insertOne(user);
+      res.json(personal);
     });
+
+    app.get('/products',async(req,res)=>{
+      const coursor=watchCollection.find({});
+      const watch=await coursor.toArray();
+      res.send(watch);
+    })
   } finally {
   }
 }
