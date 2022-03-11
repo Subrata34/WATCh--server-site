@@ -12,12 +12,13 @@ app.use(cors());
 app.use(filesUpload());
 
 //mongodb connection
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.g4aj0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://watch-server:SgvukoeXpqpMglAz@cluster0.g4aj0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   
 });
+console.log(uri)
 //function
 
 //function
@@ -33,8 +34,8 @@ async function run() {
       discrption = req.body.discrption;
       pic = req.files.image;
       picData = pic.data;
-      encoded = picData.toString("base64");
-      encodedpic = Buffer.from(encoded, "base64");
+      encoded = picData.toString('base64');
+      encodedpic = Buffer.from(encoded, 'base64');
       const user = {
         products,
         discrption,
