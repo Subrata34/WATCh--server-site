@@ -47,7 +47,7 @@ async function run() {
       const personal= await  watchCollection.insertOne(user);
       res.json(personal);
     });
-
+  //get api 
     app.get('/products',async(req,res)=>{
       const couser=watchCollection.find({});
       const watch=await couser.toArray();
